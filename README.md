@@ -1,51 +1,97 @@
 # SmarTorium
 
-**SmarTorium** is an open-source Tor Browser add-on designed to easily and privately manage your browser configuration.
+![Status](https://img.shields.io/badge/status-beta-yellow)
+![Python](https://img.shields.io/badge/python-3.x-blue)
+![License](https://img.shields.io/badge/license-unlicensed-lightgrey)
+![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
+[![GitHub stars](https://img.shields.io/github/stars/hidden2see/SmartTorium?style=social)](https://github.com/hidden2see/SmartTorium/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/hidden2see/SmartTorium)](https://github.com/hidden2see/SmartTorium/commits/master)
 
-> ### Disclaimer & Legal Notice
-> 
-> 
-> * **Beta Software Notice:** This software is currently in beta. **USE AT YOUR OWN RISK.**
-> * **Open-Source Terms:** This project is open-source and open to public contribution.
-> * **Limitation of Liability & Warranty:** THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE DEVELOPERS OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES, PRIVACY LEAKS, SYSTEM ANOMALIES, DATA LOSS, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE USE OF THIS SOFTWARE OR TOR BROWSER.
-> * **Data Encryption & Loss:** Local data is encrypted using cryptographic methods. IF ENCRYPTION KEYS OR PASSWORDS ARE LOST, DELETED, OR FORGOTTEN, THE DATA **CANNOT BE DECRYPTED OR RECOVERED** BY THE DEVELOPERS OR MAINTENANCE TEAM.
+I got tired of hand-editing `torrc` every time I wanted to switch exit countries in Tor Browser, so I built SmarTorium — a small script that does it for you, with more coming.
 
-## How to install SmarTorium
+> ⚠️ **Heads up: this is beta software.** The exit-country switch works well. Most of the rest is still being built (see the table below). Try it in a throwaway/test setup first, not your daily driver. Details in the [Disclaimer](#disclaimer--legal-notice).
 
-Copy the git repo from GitHub:
+---
+
+## Why this exists
+
+Tor Browser can already do most of this — but only if you're comfortable opening config files by hand, restarting the browser, and remembering the exact syntax each time. I wasn't, most of the time, so I wrapped the parts I use most into one command.
+
+Right now that's:
+- Switching exit country without touching `torrc`
+
+And on the way:
+- Saving and switching between browser profiles
+- Making your preferred settings stick across sessions
+
+To be clear — this doesn't touch or replace Tor Browser's actual security model. It just sits on top of it and saves you some typing. No telemetry, nothing phoned home.
+
+## See it in action
+
+*(This is where a short terminal recording or screenshot should go — genuinely the thing that will convince people fastest. A 10-second [asciinema](https://asciinema.org/) clip of setting an exit country would do more than any paragraph here.)*
+
+## Getting it running
+
 ```bash
 git clone https://github.com/hidden2see/SmartTorium.git
-```
-
-Enter your folder:
-```bash
 cd SmartTorium
-```
-
-Run smart SmarTorium:
-```bash
 python main.py
 ```
 
-### Features
+You'll need Python 3.x and a Tor Browser install already on your machine.
 
-* Modify Exit Country
-* Encrypt extracted local add-on data using custom cryptographic routines (*Currently unavailable*)
-* Profiles (*Under construction*)
-* Advanced profile data persistence (*Under construction*)
-* Auto-run execution (*Under construction*)
-* EVEN MORE LATER DOWN THE LINE
+## Using it
 
-### Compatibility
+*(A couple of real examples belong here, e.g.)*
 
-Full device compatibility and cross-platform verification will be formally established upon the initial stable release. In the interim, consult individual pre-release documentation for compatibility constraints. **Deployment outside of isolated development and testing environments is strongly discouraged due to the risk of local data loss or corruption.**
+```bash
+python main.py --exit-country de
+```
 
-### Frequently Asked Questions
+## Where things stand
 
-**Have a feature request?**
+| Feature | Status |
+|---|---|
+| Modify exit country | ✅ works today |
+| Encrypted local add-on data | 🚧 building it |
+| Profiles | 🚧 building it |
+| Profile data persistence | 🚧 building it |
+| Auto-run | 🚧 building it |
 
-We welcome community feedback. Please submit an issue in the project repository detailing your proposal.
+## On trust
 
-**Want to contribute to development?**
+I know asking people to hand a tool access to their Tor config is a big ask, especially from a project this new. So, plainly:
 
-Fork the repository, adhere to the Conventional Commits specification, and submit a Merge/Pull Request. Before opening a request, inspect open issues, existing forks, and the active feature roadmap to ensure the feature is not already in development. Contributions and attribution are evaluated on a first-come, first-served basis.
+- Nothing leaves your device — no analytics, no phone-home.
+- The code's all here to read — `main.py` and `scripts/`, nothing hidden.
+- *(Worth adding once true: whether anyone besides me has reviewed this, and exactly how local data gets stored/encrypted. Being upfront about what hasn't been checked yet matters more than pretending it has.)*
+
+## What's next
+
+- [ ] Get encrypted local storage actually working
+- [ ] Ship profiles
+- [ ] Test across platforms properly
+- [ ] Call it stable
+
+## Questions people ask
+
+**Got an idea for a feature?**
+Open an issue and tell me about it — I do read them.
+
+**Want to help build it?**
+Fork it, follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages, and send a PR. Take a look at open issues and the roadmap above first so we're not duplicating work.
+
+## A note on compatibility
+
+I haven't been able to properly verify this across different setups yet — that'll come with the first stable release. Until then, please don't run this outside a test environment; the risk is local data loss or corruption, not a hypothetical one.
+
+## Disclaimer & Legal Notice
+
+- **Beta Software Notice:** This software is currently in beta. **Use at your own risk.**
+- **Open-Source Terms:** This project is open source and open to public contribution.
+- **Limitation of Liability & Warranty:** This software is provided "AS IS", without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the developers or contributors be liable for any claim, damages, privacy leaks, system anomalies, data loss, or other liability arising from, out of, or in connection with the use of this software or Tor Browser.
+- **Data Encryption & Loss:** Local data is encrypted using cryptographic methods. If encryption keys or passwords are lost, deleted, or forgotten, that data **cannot be decrypted or recovered** by the developers or maintenance team.
+
+## License
+
+*(Still needs one — an unlicensed repo makes people hesitate to use or contribute to it, especially for anything touching Tor. MIT or Apache-2.0 are the usual picks for something this size.)*
