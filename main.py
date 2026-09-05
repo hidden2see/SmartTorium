@@ -21,7 +21,7 @@ from getpass import getuser
 from time import sleep
 import os
 
-def Main():
+def main():
     print(f'''
 Hello {getuser()}, welcome to SmarTorium!
 Do not install this script from anywhere except the main GitHub project
@@ -38,39 +38,39 @@ Options:
     try:
         option_num = int(option) 
     except ValueError:
-        UserDidntEnterAValidOption()
+        userDidntEnterAValidOption()
 
-    ClearLine()
+    clearLine()
     match option_num:
         case 1:
-            RegionChange()
+            regionChange()
         case _:
-            UserDidntEnterAValidOption()
+            userDidntEnterAValidOption()
 
         
 
-def UserDidntEnterAValidOption():
+def userDidntEnterAValidOption():
     print("You didn't enter a number valid number, try again")
     sleep(5)
-    ClearLine()
-    Main()
+    clearLine()
+    main()
 
-def ClearLine():
+def clearLine():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def OperationCompleted():
+def operationCompleted():
     print("\n\nOperation completed successfully")
     print("You will be redericted to the main menu in 5 seconds")
     sleep(5)
-    Main()
+    main()
 
-def RegionChange():
-    ClearLine()
+def regionChange():
+    clearLine()
     EndPoint = NewEndPoint()
-    EndPoint.FindTorrcPath()
-    EndPoint.RefreshTorrc()
-    EndPoint.RequestContry()
-    EndPoint.AddTheContry()
-    OperationCompleted()
+    EndPoint.findTorrcPath()
+    EndPoint.refreshTorrc()
+    EndPoint.requestContry()
+    EndPoint.addTheContry()
+    operationCompleted()
 
-Main()
+main()

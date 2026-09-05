@@ -9,7 +9,7 @@ class NewEndPoint:
         self.region = ""
         self.errors = False
 
-    def FindTorrcPath(self):
+    def findTorrcPath(self):
         initial_paths = list(Path("/").rglob("torrc"))
         file_found = False
 
@@ -25,10 +25,10 @@ class NewEndPoint:
         if not file_found:
             raise KeyError("The program was unable to find the Torrc file, ensure Tor Browser is installed correctly. If Tor Browser is installed contact support.")
 
-    def RefreshTorrc(self):
+    def refreshTorrc(self):
         shutil.copyfile(self.path.with_name("torrc-defaults"), self.path)
 
-    def RequestContry(self):
+    def requestContry(self):
         code = input("Enter the country code you wanna use for your end point connection: ")
         cleaned_code = code.strip().upper()
 
@@ -42,7 +42,7 @@ class NewEndPoint:
             sleep(5)
             self.RequestContry()
 
-    def AddTheContry(self):
+    def addTheContry(self):
         with open(self.path, "a") as file:
             file.write(f'''
                 ExitNodes {{{self.region}}}
