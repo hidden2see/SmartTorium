@@ -2,7 +2,7 @@
 
 ![Status](https://img.shields.io/badge/status-beta-yellow)
 ![Python](https://img.shields.io/badge/python-3.x-blue)
-![License](https://img.shields.io/badge/license-unlicensed-lightgrey)
+![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)
 ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
 [![GitHub stars](https://img.shields.io/github/stars/hidden2see/SmartTorium?style=social)](https://github.com/hidden2see/SmartTorium/stargazers)
 [![Last commit](https://img.shields.io/github/last-commit/hidden2see/SmartTorium)](https://github.com/hidden2see/SmartTorium/commits/master)
@@ -93,5 +93,6 @@ I haven't been able to properly verify this across different setups yet — that
 - **Data Encryption & Loss:** Local data is encrypted using cryptographic methods. If encryption keys or passwords are lost, deleted, or forgotten, that data **cannot be decrypted or recovered** by the developers or maintenance team.
 
 ## License
-
-*(Still needs one — an unlicensed repo makes people hesitate to use or contribute to it, especially for anything touching Tor. MIT or Apache-2.0 are the usual picks for something this size.)*
+AGPLv3 — see [LICENSE](./LICENSE.md) for details. In short: you can use, modify,
+and redistribute this freely, but if you modify it and distribute it (including
+running it as a hosted service), you must release your source under the same license.
