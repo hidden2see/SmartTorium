@@ -40,14 +40,6 @@ python main.py
 
 You'll need Python 3.x and a Tor Browser install already on your machine.
 
-## Using it
-
-*(A couple of real examples belong here, e.g.)*
-
-```bash
-python main.py --exit-country de
-```
-
 ## Where things stand
 
 | Feature | Status |
