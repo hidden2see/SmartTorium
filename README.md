@@ -28,7 +28,7 @@ To be clear — this doesn't touch or replace Tor Browser's actual security mode
 
 ## See it in action
 
-*(This is where a short terminal recording or screenshot should go — genuinely the thing that will convince people fastest. A 10-second [asciinema](https://asciinema.org/) clip of setting an exit country would do more than any paragraph here.)*
+![SmarTorium demo](https://i.ibb.co/twDBcD7Y/DEMO.png)
 
 ## Getting it running
 
@@ -53,10 +53,21 @@ python main.py --exit-country de
 | Feature | Status |
 |---|---|
 | Modify exit country | ✅ works today |
-| Encrypted local add-on data | 🚧 building it |
 | Profiles | 🚧 building it |
 | Profile data persistence | 🚧 building it |
+| Encrypted local profile data | 🚧 planned — see note below |
 | Auto-run | 🚧 building it |
+
+## On local data and encryption
+
+**Right now, SmarTorium does not create or store any persistent local data.** The only working feature (exit-country switching) just writes a value Tor itself reads — there's nothing saved to disk that belongs to you as a user yet.
+
+Once profiles are implemented, some of that will change — profile preferences and any cookies you opt to retain will need to live somewhere. When that happens:
+- This section will be updated to describe exactly what's stored, where, and how it's protected.
+- Sensitive data (like retained cookies) will be encrypted; non-sensitive preferences (like "reopen this profile on load") likely won't need to be, and I'll be explicit about which is which rather than blanket-labeling everything "encrypted."
+- I'll document the specific method used (library, key derivation, and what happens if you lose your passphrase) before this feature ships — not after.
+
+Until that's written and true, please don't rely on this tool for protecting sensitive local data.
 
 ## On trust
 
@@ -64,12 +75,13 @@ I know asking people to hand a tool access to their Tor config is a big ask, esp
 
 - Nothing leaves your device — no analytics, no phone-home.
 - The code's all here to read — `main.py` and `scripts/`, nothing hidden.
-- *(Worth adding once true: whether anyone besides me has reviewed this, and exactly how local data gets stored/encrypted. Being upfront about what hasn't been checked yet matters more than pretending it has.)*
+- I haven't had this independently reviewed yet. Treat it accordingly until it has been.
 
 ## What's next
 
-- [ ] Get encrypted local storage actually working
-- [ ] Ship profiles
+- [ ] Ship basic profiles (exit-country + reopen-on-load, no sensitive data)
+- [ ] Add per-site preference metadata (retain cookies, extension exceptions) as settings only
+- [ ] Implement real encryption for the profile tier that actually needs it (cookies)
 - [ ] Test across platforms properly
 - [ ] Call it stable
 
@@ -88,11 +100,10 @@ I haven't been able to properly verify this across different setups yet — that
 ## Disclaimer & Legal Notice
 
 - **Beta Software Notice:** This software is currently in beta. **Use at your own risk.**
-- **Open-Source Terms:** This project is open source and open to public contribution.
+- **Open-Source Terms:** This project is open source (AGPLv3) and open to public contribution.
 - **Limitation of Liability & Warranty:** This software is provided "AS IS", without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the developers or contributors be liable for any claim, damages, privacy leaks, system anomalies, data loss, or other liability arising from, out of, or in connection with the use of this software or Tor Browser.
-- **Data Encryption & Loss:** Local data is encrypted using cryptographic methods. If encryption keys or passwords are lost, deleted, or forgotten, that data **cannot be decrypted or recovered** by the developers or maintenance team.
+- **Data Encryption & Loss:** SmarTorium does not currently store persistent local data, so there is nothing to encrypt yet. Once local data storage (e.g. profiles) is implemented, this section will be updated with accurate details — including what happens if an encryption key or passphrase is lost. Until then, this clause is a placeholder for future functionality, not a description of anything currently shipped.
 
 ## License
-AGPLv3 — see [LICENSE](./LICENSE.md) for details. In short: you can use, modify,
-and redistribute this freely, but if you modify it and distribute it (including
-running it as a hosted service), you must release your source under the same license.
+
+AGPLv3 — see [LICENSE.md](./LICENSE.md) for the full text. In short: you're free to use, modify, and redistribute this, but if you distribute a modified version — including running it as a hosted/network service — you must release your source under the same license. This is meant to keep SmarTorium (and anything built from it) open, including if someone tries to offer it as a paid hosted service.
